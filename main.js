@@ -80,7 +80,6 @@ const textFocus = (targetDiv) => {
     inputField.focus();
     inputField.addEventListener("keyup", function (event) {
         targetDiv.innerHTML = event.target.value;
-        event.preventDefault();
     })
     textBlur();            
 };
@@ -88,6 +87,7 @@ const textFocus = (targetDiv) => {
 const textBlur = () => {
     inputField.addEventListener("submit", function (event) {
         event.preventDefault();
+        inputField.blur();
         inputField.value = '';
     })
 };    
