@@ -61,19 +61,32 @@ const createFamousCards = () => {
 const cardClick = () => {
     const className = 'give-border'
     const cards = document.getElementsByClassName('full-card');
+    const bios = document.getElementsByClassName('card-text')
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
+        const bio = bios[i]
         card.addEventListener('click', (e) => {
             const cardClicked = e.currentTarget;
             cardClicked.classList.toggle(className);
-            textFocus();
+            textFocus(bio);
         })
     }            
 };
 
-const textFocus = () => {           
-    document.getElementById("input-field").focus();
-  };
+const textFocus = (targetDiv) => { 
+    const inputField = document.getElementById('input-field');          
+    inputField.focus();
+    inputField.addEventListener("keyup", function (event) {
+        targetDiv.innerHTML = event.target.value;
+  })
+};  
+
+//  const input = document.getElementById("keypress-input")
+
+//   fieldEl.addEventListener("keyup", function (event) {
+//       outputEl.innerHTML = event.target.value
+//   })  
+
 
 createFamousCards();
 cardClick();            
