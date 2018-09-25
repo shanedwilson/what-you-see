@@ -1,3 +1,16 @@
 body {
     background-color: aqua;
 }
+
+#card-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.odd {
+    background-color: yellow;
+}
+
+.even {
+    background-color: lightblue;
+}
