@@ -7,6 +7,10 @@ body {
     flex-direction: row;
 }
 
+.card-img-top {
+    max-height: 250px;
+}
+
 .odd {
     background-color: yellow;
 }

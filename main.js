@@ -33,7 +33,7 @@ const createFamousCards = () => {
         cards = famous.indexOf(famous[i]);
         if(cards % 2 === 0) {
             famousCard = `<div class="full-card">
-                    <div class="even card m-1" style="width: 18rem;">
+                    <div class="even card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
@@ -44,7 +44,7 @@ const createFamousCards = () => {
             </div>`
         } else {
             famousCard = `<div class="full-card">
-                    <div class="odd card m-1" style="width: 18rem;">
+                    <div class="odd card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
