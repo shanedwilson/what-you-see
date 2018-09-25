@@ -14,3 +14,7 @@ body {
 .even {
     background-color: lightblue;
 }
+
+.give-border {
+    border: dotted black;
+}

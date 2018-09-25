@@ -32,29 +32,43 @@ const createFamousCards = () => {
     for (i = 0; i < famous.length; i++) {
         cards = famous.indexOf(famous[i]);
         if(cards % 2 === 0) {
-            famousCard = `<div class="even card m-1" style="width: 18rem;">
-                <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
-                <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
-                <div class="card-body">
-                <p class="card-text">${famous[i].bio}</p>
+            famousCard = `<div class="full-card">
+                    <div class="even card m-1" style="width: 18rem;">
+                    <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
+                    <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
+                    <div class="card-body">
+                    <p class="card-text">${famous[i].bio}</p>
+                    </div>
+                    <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
-                <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
             </div>`
         } else {
-            famousCard = `<div class="odd card m-1" style="width: 18rem;">
-                <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
-                <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
-                <div class="card-body">
-                <p class="card-text">${famous[i].bio}</p>
+            famousCard = `<div class="full-card">
+                    <div class="odd card m-1" style="width: 18rem;">
+                    <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
+                    <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
+                    <div class="card-body">
+                    <p class="card-text">${famous[i].bio}</p>
+                    </div>
+                    <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
-                <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
             </div>`    
         }
         printToDom(famousCard, 'card-div')
     }
 };  
 
+const cardClick = () => {
+    const className = 'give-border'
+    const cards = document.getElementsByClassName('full-card');
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        card.addEventListener('click', (e) => {
+            const cardClicked = e.currentTarget;
+            cardClicked.classList.toggle(className);
+        })
+    }            
+};
+
 createFamousCards();
-
-
-            
+cardClick();            
