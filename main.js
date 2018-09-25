@@ -66,9 +66,14 @@ const cardClick = () => {
         card.addEventListener('click', (e) => {
             const cardClicked = e.currentTarget;
             cardClicked.classList.toggle(className);
+            textFocus();
         })
     }            
 };
+
+const textFocus = () => {           
+    document.getElementById("input-field").focus();
+  };
 
 createFamousCards();
 cardClick();            
