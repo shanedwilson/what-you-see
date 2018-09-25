@@ -20,4 +20,41 @@ const famous = [
           death: 1978
         }
       }
-]
+];
+
+const printToDom = (stringToPrint, divId) => {
+    const selecectedDiv = document.getElementById(divId);
+    selecectedDiv.innerHTML += stringToPrint;
+};
+
+const createFamousCards = () => {
+    let famousCard = '';
+    for (i = 0; i < famous.length; i++) {
+        cards = famous.indexOf(famous[i]);
+        if(cards % 2 === 0) {
+            famousCard = `<div class="even card m-1" style="width: 18rem;">
+                <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
+                <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
+                <div class="card-body">
+                <p class="card-text">${famous[i].bio}</p>
+                </div>
+                <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
+            </div>`
+        } else {
+            famousCard = `<div class="odd card m-1" style="width: 18rem;">
+                <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
+                <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
+                <div class="card-body">
+                <p class="card-text">${famous[i].bio}</p>
+                </div>
+                <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
+            </div>`    
+        }
+        printToDom(famousCard, 'card-div')
+    }
+};  
+
+createFamousCards();
+
+
+            
