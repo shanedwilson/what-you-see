@@ -73,20 +73,24 @@ const cardClick = () => {
     }            
 };
 
+const inputField = document.getElementById('input-field');
+const inputForm = document.getElementById('form');          
+
 const textFocus = (targetDiv) => { 
-    const inputField = document.getElementById('input-field');          
     inputField.focus();
     inputField.addEventListener("keyup", function (event) {
         targetDiv.innerHTML = event.target.value;
-  })
-};  
+        event.preventDefault();
+    })
+    textBlur();            
+};
 
-//  const input = document.getElementById("keypress-input")
-
-//   fieldEl.addEventListener("keyup", function (event) {
-//       outputEl.innerHTML = event.target.value
-//   })  
-
+const textBlur = () => {
+    inputField.addEventListener("submit", function (event) {
+        event.preventDefault();
+        inputField.value = '';
+    })
+};    
 
 createFamousCards();
-cardClick();            
+cardClick();  
