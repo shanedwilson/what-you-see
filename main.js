@@ -20,4 +20,10 @@ const famous = [
           death: 1978
         }
       }
-]
+];
+
+const cardColor = () => {
+      for (i = 0; i < famous.length; i++) {
+        cards = famous.indexOf(famous[i]);
+        if(cards % 2 === 0) {
+            
