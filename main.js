@@ -22,6 +22,9 @@ const famous = [
       }
 ];
 
+const inputField = document.getElementById('input-field');
+const inputForm = document.getElementById('form');
+
 const printToDom = (stringToPrint, divId) => {
     const selecectedDiv = document.getElementById(divId);
     selecectedDiv.innerHTML += stringToPrint;
@@ -30,25 +33,25 @@ const printToDom = (stringToPrint, divId) => {
 const createFamousCards = () => {
     let famousCard = '';
     for (i = 0; i < famous.length; i++) {
-        cards = famous.indexOf(famous[i]);
-        if(cards % 2 === 0) {
+    let cardIndex = famous.indexOf(famous[i]);
+        if(cardIndex % 2 === 0) {
             famousCard = `<div id="${i}" class="full-card">
                     <div class="odd card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
-                    <p class="card-text">${famous[i].bio}</p>
+                    <p class="card-text" id='bio${i}'>${famous[i].bio}</p>
                     </div>
                     <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
             </div>`
         } else {
-            famousCard = `<div id="${i} class="full-card">
+            famousCard = `<div id="${i}" class="full-card">
                     <div class="even card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
-                    <p class="card-text">${famous[i].bio}</p>
+                    <p class="card-text" id='bio${i}'>${famous[i].bio}</p>
                     </div>
                     <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
@@ -56,53 +59,47 @@ const createFamousCards = () => {
         }
         printToDom(famousCard, 'card-div')
     }
-};  
-
-const cardClick = () => {
-    const className = 'give-border'
-    const cards = document.getElementsByClassName('full-card');
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        console.log(cards);
-        card.addEventListener('click', (e) => {
-            const cardClicked = e.currentTarget;
-            console.log(cardClicked)
-            // const bio = e.target
-            const test = e.target.id;
-            console.log(test);    
-            cardClicked.classList.toggle(className);
-            // textFocus(bio);
-        })
-    }            
 };
-
-const inputField = document.getElementById('input-field');
-const inputForm = document.getElementById('form');
-let words = ''
-
-const inputWords = () => {
-    words = inputField.value;
-    return words;
-}
 
 const textFocus = (bio) => { 
     inputField.focus();
-    // inputField.value = bio.innerHTML;
-    inputField.addEventListener("keyup", function () {
-        inputWords();
-        console.log(bio);
-        bio.innerHTML = words;
+    inputField.addEventListener("keyup", function (event) {
+        bio.innerHTML = event.target.value;
     })
-    textBlur();            
+};
+
+const registerEvents = () => {
+    const bioCards = document.getElementsByClassName('card');
+    for (let i = 0; i < bioCards.length; i++) {
+      const element = bioCards[i];
+      element.addEventListener('click', cardFocus);
+    }
+  };
+
+const cardClick = () => {
+    let className = 'give-border';
+    const cards = document.getElementsByClassName('full-card');
+    for (i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        card.addEventListener('click', (e) => {
+            const cardClicked = e.currentTarget;
+            const cardId = e.target.parentNode.parentNode.id;
+            let bio = document.getElementById('bio'+cardId);
+            cardClicked.classList.toggle(className);
+            textFocus(bio);
+            textBlur();            
+        })
+    }
 };
 
 const textBlur = () => {
+    className = 'remove-border';
     inputForm.addEventListener("submit", function (event) {
-        event.preventDefault();
         inputField.blur();
         inputField.value = '';
+        event.preventDefault();
     })
 };
 
 createFamousCards();
-cardClick();  
+cardClick();

@@ -34,9 +34,11 @@ form {
     border: dotted black;
 }
 
+.remove-border{
+    border: none;
+}
+
 .row {
     display:flex;
     justify-content: center;
 }
-
-.
