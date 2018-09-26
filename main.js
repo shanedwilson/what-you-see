@@ -74,12 +74,18 @@ const cardClick = () => {
 };
 
 const inputField = document.getElementById('input-field');
-const inputForm = document.getElementById('form');          
+const inputForm = document.getElementById('form');
 
-const textFocus = (targetDiv) => { 
+// const inputWords = () => {
+//     const words = inputField.value;
+//     return words
+// }
+
+const textFocus = (bio) => { 
     inputField.focus();
+    inputField.value = bio.innerHTML;
     inputField.addEventListener("keyup", function (event) {
-        targetDiv.innerHTML = event.target.value;
+        bio.innerHTML = event.target.value;
     })
     textBlur();            
 };
