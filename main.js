@@ -68,14 +68,6 @@ const textFocus = (bio) => {
     })
 };
 
-const registerEvents = () => {
-    const bioCards = document.getElementsByClassName('card');
-    for (let i = 0; i < bioCards.length; i++) {
-      const element = bioCards[i];
-      element.addEventListener('click', cardFocus);
-    }
-  };
-
 const cardClick = () => {
     let className = 'give-border';
     const cards = document.getElementsByClassName('full-card');
