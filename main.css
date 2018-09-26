@@ -1,44 +1,44 @@
 body {
-    background-color: aqua;
+  background-color: aqua;
 }
 
 h1 {
-    text-align: center;
-    font-size: 2em;
+  text-align: center;
+  font-size: 2em;
 }
 
 form {
-    text-align: center;
-    margin: 25px;
+  text-align: center;
+  margin: 25px;
 }
 
 .full-card {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
 }
 
 .card-img-top {
-    max-height: 250px;
+  max-height: 250px;
 }
 
 .even {
-    background-color: lightyellow;
+  background-color: lightyellow;
 }
 
 .odd {
-    background-color: lightblue;
+  background-color: lightblue;
 }
 
 .give-border {
-    border: dotted black;
+  border: dotted black;
 }
 
-.remove-border{
-    border: none;
+.remove-border {
+  border: none;
 }
 
 .row {
-    display:flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
