@@ -22,33 +22,44 @@ const famous = [
       }
 ];
 
+const inputField = document.getElementById('input-field');
+const inputForm = document.getElementById('form');
+let val;
+let bioId;
+let cardId;
+
+const getValue = () => {
+    val = inputField.value;
+    return val; 
+}
+
 const printToDom = (stringToPrint, divId) => {
-    const selecectedDiv = document.getElementById(divId);
+    let selecectedDiv = document.getElementById(divId);
     selecectedDiv.innerHTML += stringToPrint;
 };
 
 const createFamousCards = () => {
     let famousCard = '';
     for (i = 0; i < famous.length; i++) {
-        cards = famous.indexOf(famous[i]);
-        if(cards % 2 === 0) {
-            famousCard = `<div class="full-card">
-                    <div class="even card col-sm-12" style="width: 18rem;">
+    let cardIndex = famous.indexOf(famous[i]);
+        if(cardIndex % 2 === 0) {
+            famousCard = `<div id="${i}" class="full-card">
+                    <div class="odd card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
-                    <p class="card-text">${famous[i].bio}</p>
+                    <p class="card-text" id='bio${i}'>${famous[i].bio}</p>
                     </div>
                     <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
             </div>`
         } else {
-            famousCard = `<div class="full-card">
-                    <div class="odd card col-sm-12" style="width: 18rem;">
+            famousCard = `<div id="${i}" class="full-card">
+                    <div class="even card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
                     <div class="card-body">
-                    <p class="card-text">${famous[i].bio}</p>
+                    <p class="card-text" id='bio${i}'>${famous[i].bio}</p>
                     </div>
                     <div class="card-footer text-muted text-center">${famous[i].lifespan.birth}-${famous[i].lifespan.death}</div>
                 </div>
@@ -56,41 +67,43 @@ const createFamousCards = () => {
         }
         printToDom(famousCard, 'card-div')
     }
-};  
-
-const cardClick = () => {
-    const className = 'give-border'
-    const cards = document.getElementsByClassName('full-card');
-    const bios = document.getElementsByClassName('card-text')
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        const bio = bios[i]
-        card.addEventListener('click', (e) => {
-            const cardClicked = e.currentTarget;
-            cardClicked.classList.toggle(className);
-            textFocus(bio);
-        })
-    }            
 };
 
-const inputField = document.getElementById('input-field');
-const inputForm = document.getElementById('form');          
-
-const textFocus = (targetDiv) => { 
-    inputField.focus();
-    inputField.addEventListener("keyup", function (event) {
-        targetDiv.innerHTML = event.target.value;
-        event.preventDefault();
+const cardClick = () => {
+    let className = 'give-border';
+    let cards = document.getElementsByClassName('full-card');
+    for (i = 0; i < cards.length; i++) {
+        let card = cards[i];
+        card.addEventListener('click', (e) => {
+            let cardClicked = e.currentTarget;
+            cardId = e.currentTarget.id;
+            bioId = document.getElementById('bio'+cardId);
+            cardClicked.classList.toggle(className);
+            if (cardClicked.classList.contains(className)) {
+                inputField.focus();
+                inputField.addEventListener("keyup", function (event) {
+                getValue(); 
+                famous[cardId].bio = val;   
+                bioId.innerHTML = famous[cardId].bio;
+            })
+        }
     })
-    textBlur();            
+}
 };
 
 const textBlur = () => {
-    inputField.addEventListener("submit", function (event) {
-        event.preventDefault();
+    inputForm.addEventListener("submit", function (event) {
+        inputField.blur();
         inputField.value = '';
+        let bioCards = document.getElementsByClassName('full-card');
+        for (let i = 0; i < bioCards.length; i++) {
+            let bioCard = bioCards[i];
+            bioCard.classList.remove('give-border');
+        }
+        event.preventDefault();
     })
-};    
+};
 
 createFamousCards();
-cardClick();  
+cardClick();
+textBlur();

@@ -2,23 +2,43 @@ body {
     background-color: aqua;
 }
 
-#card-div {
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+form {
+    text-align: center;
+    margin: 25px;
+}
+
+.full-card {
     display: flex;
     flex-direction: row;
+    margin: 10px;
 }
 
 .card-img-top {
     max-height: 250px;
 }
 
-.odd {
-    background-color: yellow;
+.even {
+    background-color: lightyellow;
 }
 
-.even {
+.odd {
     background-color: lightblue;
 }
 
 .give-border {
     border: dotted black;
+}
+
+.remove-border{
+    border: none;
+}
+
+.row {
+    display:flex;
+    justify-content: center;
 }
