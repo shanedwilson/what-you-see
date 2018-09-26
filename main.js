@@ -32,7 +32,7 @@ const createFamousCards = () => {
     for (i = 0; i < famous.length; i++) {
         cards = famous.indexOf(famous[i]);
         if(cards % 2 === 0) {
-            famousCard = `<div class="full-card">
+            famousCard = `<div id="${i}" class="full-card">
                     <div class="odd card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
@@ -43,7 +43,7 @@ const createFamousCards = () => {
                 </div>
             </div>`
         } else {
-            famousCard = `<div class="full-card">
+            famousCard = `<div id="${i} class="full-card">
                     <div class="even card col-sm-12" style="width: 18rem;">
                     <div class="card-header text-center">${famous[i].title}: ${famous[i].name}</div>
                     <img class="card-img-top" src="${famous[i].image}" alt="${famous[i].name}">
@@ -61,31 +61,37 @@ const createFamousCards = () => {
 const cardClick = () => {
     const className = 'give-border'
     const cards = document.getElementsByClassName('full-card');
-    const bios = document.getElementsByClassName('card-text')
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
-        const bio = bios[i]
+        console.log(cards);
         card.addEventListener('click', (e) => {
             const cardClicked = e.currentTarget;
+            console.log(cardClicked)
+            // const bio = e.target
+            const test = e.target.id;
+            console.log(test);    
             cardClicked.classList.toggle(className);
-            textFocus(bio);
+            // textFocus(bio);
         })
     }            
 };
 
 const inputField = document.getElementById('input-field');
 const inputForm = document.getElementById('form');
+let words = ''
 
-// const inputWords = () => {
-//     const words = inputField.value;
-//     return words
-// }
+const inputWords = () => {
+    words = inputField.value;
+    return words;
+}
 
 const textFocus = (bio) => { 
     inputField.focus();
-    inputField.value = bio.innerHTML;
-    inputField.addEventListener("keyup", function (event) {
-        bio.innerHTML = event.target.value;
+    // inputField.value = bio.innerHTML;
+    inputField.addEventListener("keyup", function () {
+        inputWords();
+        console.log(bio);
+        bio.innerHTML = words;
     })
     textBlur();            
 };
