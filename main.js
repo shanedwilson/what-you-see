@@ -23,6 +23,19 @@ const famous = [
       birth: 1931,
       death: 1978
     }
+  },
+
+  {
+    title: "Cultural Icon",
+    name: "Mr. Bill",
+    bio:
+      "Mr. Bill is a clay figurine clown star of a parody of children's shows, created by Walter Williams. Mr. Bill got its start on Saturday Night Live as a series Super 8 film sent in response to the show's request for home movies during the first season.",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/SNL_MrBill_Doll.jpg/1200px-SNL_MrBill_Doll.jpg",
+    lifespan: {
+      birth: 1978,
+      death: ""
+    }
   }
 ];
 
