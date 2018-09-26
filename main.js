@@ -28,14 +28,9 @@ const famous = [
 
 const inputField = document.getElementById("input-field");
 const inputForm = document.getElementById("form");
-let val;
 let bioId;
 let cardId;
-
-const getValue = () => {
-  val = inputField.value;
-  return val;
-};
+let className = "give-border";
 
 const printToDom = (stringToPrint, divId) => {
   let selecectedDiv = document.getElementById(divId);
@@ -86,7 +81,6 @@ const createFamousCards = () => {
 };
 
 const cardClick = () => {
-  let className = "give-border";
   let cards = document.getElementsByClassName("full-card");
   for (i = 0; i < cards.length; i++) {
     let card = cards[i];
@@ -97,10 +91,8 @@ const cardClick = () => {
       cardClicked.classList.toggle(className);
       if (cardClicked.classList.contains(className)) {
         inputField.focus();
-        inputField.addEventListener("keyup", function(event) {
-          getValue();
-          famous[cardId].bio = val;
-          bioId.innerHTML = famous[cardId].bio;
+        inputField.addEventListener("keyup", function() {
+          bioId.innerHTML = event.target.value;
         });
       }
     });
