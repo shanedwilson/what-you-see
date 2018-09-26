@@ -61,7 +61,7 @@ const createFamousCards = () => {
     }
 };
 
-const textFocus = (bio) => { 
+const textFocus = () => { 
     inputField.focus();
     inputField.addEventListener("keyup", function (event) {
         bio.innerHTML = event.target.value;
@@ -78,17 +78,21 @@ const cardClick = () => {
             const cardId = e.target.parentNode.parentNode.id;
             let bio = document.getElementById('bio'+cardId);
             cardClicked.classList.toggle(className);
-            textFocus(bio);
+            textFocus();
             textBlur();            
         })
     }
 };
 
 const textBlur = () => {
-    className = 'remove-border';
     inputForm.addEventListener("submit", function (event) {
         inputField.blur();
         inputField.value = '';
+        let bioCards = document.getElementsByClassName('full-card');
+        for (let i = 0; i < bioCards.length; i++) {
+            const bioCard = bioCards[i];
+            bioCard.classList.remove('give-border');
+        }
         event.preventDefault();
     })
 };
