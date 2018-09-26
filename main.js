@@ -24,6 +24,14 @@ const famous = [
 
 const inputField = document.getElementById('input-field');
 const inputForm = document.getElementById('form');
+let val;
+let bioId;
+let cardId;
+
+const getValue = () => {
+    val = inputField.value;
+    return val; 
+}
 
 const printToDom = (stringToPrint, divId) => {
     let selecectedDiv = document.getElementById(divId);
@@ -68,13 +76,15 @@ const cardClick = () => {
         let card = cards[i];
         card.addEventListener('click', (e) => {
             let cardClicked = e.currentTarget;
-            let cardId = e.target.parentNode.parentNode.id;
-            let bio = document.getElementById('bio'+cardId);
+            cardId = e.currentTarget.id;
+            bioId = document.getElementById('bio'+cardId);
             cardClicked.classList.toggle(className);
             if (cardClicked.classList.contains(className)) {
                 inputField.focus();
                 inputField.addEventListener("keyup", function (event) {
-                bio.innerHTML = event.target.value;    
+                getValue(); 
+                famous[cardId].bio = val;   
+                bioId.innerHTML = famous[cardId].bio;
             })
         }
     })
