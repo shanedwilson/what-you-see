@@ -26,7 +26,7 @@ const inputField = document.getElementById('input-field');
 const inputForm = document.getElementById('form');
 
 const printToDom = (stringToPrint, divId) => {
-    const selecectedDiv = document.getElementById(divId);
+    let selecectedDiv = document.getElementById(divId);
     selecectedDiv.innerHTML += stringToPrint;
 };
 
@@ -63,12 +63,12 @@ const createFamousCards = () => {
 
 const cardClick = () => {
     let className = 'give-border';
-    const cards = document.getElementsByClassName('full-card');
+    let cards = document.getElementsByClassName('full-card');
     for (i = 0; i < cards.length; i++) {
-        const card = cards[i];
+        let card = cards[i];
         card.addEventListener('click', (e) => {
-            const cardClicked = e.currentTarget;
-            const cardId = e.target.parentNode.parentNode.id;
+            let cardClicked = e.currentTarget;
+            let cardId = e.target.parentNode.parentNode.id;
             let bio = document.getElementById('bio'+cardId);
             cardClicked.classList.toggle(className);
             if (cardClicked.classList.contains(className)) {
@@ -87,7 +87,7 @@ const textBlur = () => {
         inputField.value = '';
         let bioCards = document.getElementsByClassName('full-card');
         for (let i = 0; i < bioCards.length; i++) {
-            const bioCard = bioCards[i];
+            let bioCard = bioCards[i];
             bioCard.classList.remove('give-border');
         }
         event.preventDefault();
